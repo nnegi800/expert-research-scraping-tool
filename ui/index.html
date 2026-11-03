@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Expert Outreach — the company</title>
+  <title>Expert Research & Outreach Tool</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -585,7 +585,7 @@
 <!-- ══ HEADER ══ -->
 <header class="header">
   <div class="header-left">
-    <span class="header-logo" onclick="S.apiKey ? showScreen('home') : null" style="cursor:pointer;">the company</span>
+    <span class="header-logo" onclick="S.apiKey ? showScreen('home') : null" style="cursor:pointer;">Expert Outreach</span>
     <span class="header-sub">Expert Outreach</span>
   </div>
   <div class="header-right">
@@ -906,13 +906,13 @@ const OUTREACH_EXAMPLES_LONG = `1. Hello Myriam,
 
 I saw your Semrush session "AI Search Is Reshaping How Brands Are Found – Are You Ready?" and really appreciated how practically you frame AI-driven discovery and brand visibility.
 
-For context, I work in digital innovation at my organization. We're building our understanding of GEO/AEO and AI-assisted discovery (including measurement and the common pitfalls teams run into when they try to operationalize this).
+For context, I work in digital innovation. We're building our understanding of GEO/AEO and AI-assisted discovery (including measurement and the common pitfalls teams run into when they try to operationalize this).
 
 Would you be open to a quick 20-min call with our internal team to hear your perspective on this new transformation? If there's alignment, we'd love to explore a wider team session with our VP and team leads!
 
 Thanks,
 [Your Name]
-Digital Innovation
+[Your Role]
 [Your Organization]
 
 
@@ -920,9 +920,9 @@ Digital Innovation
 
 I read your recent piece on China's humanoid robotics and I think your observation that "China's advantage in robotics is not any single robot - it is the closed loop around the robot" was quite unique!
 
-That kind of perspective on emerging tech-topics is exactly what we're trying to build awareness of internally at the company.
+That kind of perspective on emerging tech-topics is exactly what we're trying to build awareness of internally.
 
-For context, I work in Digital Innovation and AI at my organization, and we're building our team's understanding of how leading tech writers and experts track, process, and form opinions on emerging technology.
+For context, I work in Digital Innovation and AI, and we're building our team's understanding of how leading tech writers and experts track, process, and form opinions on emerging technology.
 
 My team is constantly seeking field experts as independent voices to learn more about these topics.
 
@@ -930,7 +930,7 @@ Would you be open to a quick 20-min call? If there's alignment, we'd love to exp
 
 Thanks,
 [Your Name]
-Digital Innovation & AI
+[Your Role]
 [Your Organization]
 
 
@@ -938,9 +938,9 @@ Digital Innovation & AI
 
 I read your piece "After DeepSeek-V4: The East-West Divide in Open-Source AI Models" and I think it frames the gap between Eastern and Western AI development in a unique way.
 
-That kind of perspective on emerging tech-topics is exactly what we're trying to build awareness of internally at the company.
+That kind of perspective on emerging tech-topics is exactly what we're trying to build awareness of internally.
 
-For context, I work in Digital Innovation and AI at my organization, and we're building our team's understanding of how leading tech writers and experts track, process, and form opinions on emerging technology.
+For context, I work in Digital Innovation and AI, and we're building our team's understanding of how leading tech writers and experts track, process, and form opinions on emerging technology.
 
 My team is constantly seeking field experts as independent voices to learn more about these topics.
 
@@ -948,16 +948,16 @@ Would you be open to a quick 20-min call? If there's alignment, we'd love to exp
 
 Thanks,
 [Your Name]
-Digital Innovation & AI
+[Your Role]
 [Your Organization]`;
 
-const OUTREACH_EXAMPLES_SHORT = `1. Hi Yalcin, I found you via your talk with Beatrix on LWM. My Digital Innovation team at the company wants to build on LLM → LWM transformations for autonomous tech. Would you be open to a quick chat?
+const OUTREACH_EXAMPLES_SHORT = `1. Hi Yalcin, I found you via your talk with Beatrix on LWM. My Digital Innovation team wants to build on LLM → LWM transformations for autonomous tech. Would you be open to a quick chat?
 
-2. Hi Daniel, I found you via your "Travel x AI" piece and loved your take on LLMs going vertical. I am looking to upskill my team at the company on SEO/GEO, would you be open to a quick chat?
+2. Hi Daniel, I found you via your "Travel x AI" piece and loved your take on LLMs going vertical. I am looking to upskill my team on SEO/GEO, would you be open to a quick chat?
 
-3. Hi Kevin, I found you via your podcast on churn.fm. I am looking to upskill my team at the company on SEO/GEO, would you be open to a quick chat?
+3. Hi Kevin, I found you via your podcast on churn.fm. I am looking to upskill my team on SEO/GEO, would you be open to a quick chat?
 
-4. Hi Rachel, just learned about Tribe and Nvidia partnership! My team at the company has a focus on innovation and GenAI. We are currently scouting startups. Would you have time next week to discuss this?`;
+4. Hi Rachel, just learned about Tribe and Nvidia partnership! My team has a focus on innovation and GenAI. We are currently scouting startups. Would you have time next week to discuss this?`;
 
 // ─────────────────────────────────────────
 // STATE
@@ -1566,7 +1566,7 @@ async function generateAllBriefs() {
     document.getElementById('briefs-loading-text').textContent = `Generating brief for ${name} (${i + 1}/${toGenerate.length})...`;
     try {
       const raw = await callAI(
-        'You research experts for the company Digital Innovation outreach. Return only valid JSON.',
+        'You research experts for expert outreach. Return only valid JSON.',
         `Generate a brief for this person.
 
 Name: ${name}
@@ -1742,28 +1742,28 @@ async function generateAllMessages() {
       const profile = c.profiles[name] || '';
       const isShort = (c.msgLength || msgLength) === 'short';
       const msgSystemPrompt = isShort
-        ? `You draft short LinkedIn outreach messages for [Your Name], Digital Innovation & AI, my organization.
+        ? `You draft short LinkedIn outreach messages for the user (a technology professional researching industry experts).
 
 Message format rules:
 - Hard limit: 200 characters total including the greeting. Count the characters before returning. If the draft exceeds 200 characters, shorten it until it fits — do not return anything over 200 characters under any circumstances.
-- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. the company, Digital Innovation) here to give context, followed by the ask.]"
+- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. your company or team) here to give context, followed by the ask.]"
 - No formal sign-off block at the end (no "Thanks, [Your Name]" closing)
 - No em dashes (—). Use a comma or just end the sentence.
 - No filler. Every word must earn its place.
 
 Match the tone, length, and structure of these examples exactly:
 ${OUTREACH_EXAMPLES_SHORT}`
-        : `You draft personalised LinkedIn outreach messages for [Your Name], Digital Innovation & AI, my organization.
+        : `You draft personalised LinkedIn outreach messages for the user (a technology professional researching industry experts).
 Always sign off as:
 Thanks,
 [Your Name]
-Digital Innovation & AI
+[Your Role]
 [Your Organization]
 
 Message format rules:
 - 3 to 5 short paragraphs
 - Open with a specific observation about their work, sourced only from their profile context — name something concrete (a project, piece they wrote, talk, role, or experience) that clearly connects to the campaign goal. If nothing connects clearly, open with their overall background.
-- Second paragraph: give brief context on who the user is and what my organization's Digital Innovation team is building or trying to understand.
+- Second paragraph: give brief context on who the sender is and what their team is building or trying to understand.
 - Third paragraph: make a clear, low-friction ask (20-min call, quick chat).
 - Optional closing line before sign-off if it adds warmth.
 - End with the sign-off above.
@@ -1937,11 +1937,11 @@ async function reviseMsg(name) {
   if (applyBtn) { applyBtn.textContent = 'Revising…'; applyBtn.disabled = true; }
   try {
     const revised = await callAI(
-      `You revise LinkedIn outreach messages for [Your Name], Digital Innovation & AI, my organization.
+      `You revise LinkedIn outreach messages for the user (a technology professional researching industry experts).
 Sign off as:
 Thanks,
 [Your Name]
-Digital Innovation & AI
+[Your Role]
 [Your Organization]`,
       `Revise this message based on the note. Keep the same casual, personal tone.
 
@@ -1978,28 +1978,28 @@ async function regenMsg(name) {
 
   const isShortRegen = (c.msgLength || msgLength) === 'short';
   const regenSystemPrompt = isShortRegen
-    ? `You draft short LinkedIn outreach messages for [Your Name], Digital Innovation & AI, my organization.
+    ? `You draft short LinkedIn outreach messages for the user (a technology professional researching industry experts).
 
 Message format rules:
 - Hard limit: 200 characters total including the greeting. Count the characters before returning. If the draft exceeds 200 characters, shorten it until it fits — do not return anything over 200 characters under any circumstances.
-- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. the company, Digital Innovation) here to give context, followed by the ask.]"
+- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. your company or team) here to give context, followed by the ask.]"
 - No formal sign-off block at the end (no "Thanks, [Your Name]" closing)
 - No em dashes (—). Use a comma or just end the sentence.
 - No filler. Every word must earn its place.
 
 Match the tone, length, and structure of these examples exactly:
 ${OUTREACH_EXAMPLES_SHORT}`
-    : `You draft personalised LinkedIn outreach messages for [Your Name], Digital Innovation & AI, my organization.
+    : `You draft personalised LinkedIn outreach messages for the user (a technology professional researching industry experts).
 Always sign off as:
 Thanks,
 [Your Name]
-Digital Innovation & AI
+[Your Role]
 [Your Organization]
 
 Message format rules:
 - 3 to 5 short paragraphs
 - Open with a specific observation about their work, sourced only from their profile context — name something concrete (a project, piece they wrote, talk, role, or experience) that clearly connects to the campaign goal. If nothing connects clearly, open with their overall background.
-- Second paragraph: give brief context on who the user is and what my organization's Digital Innovation team is building or trying to understand.
+- Second paragraph: give brief context on who the sender is and what their team is building or trying to understand.
 - Third paragraph: make a clear, low-friction ask (20-min call, quick chat).
 - Optional closing line before sign-off if it adds warmth.
 - End with the sign-off above.
@@ -2178,7 +2178,7 @@ async function runQuickAdd() {
   for (const person of people) {
     try {
       const briefRaw = await callAI(
-        'You research experts for the company Digital Innovation outreach. Return only valid JSON.',
+        'You research experts for expert outreach. Return only valid JSON.',
         `Generate a brief for this person.
 
 Name: ${person.name}
@@ -2212,28 +2212,28 @@ Return ONLY this JSON object:
 
       const isShortQA = (c.msgLength || msgLength) === 'short';
       const qaMsgSystemPrompt = isShortQA
-        ? `You draft short LinkedIn outreach messages for [Your Name], Digital Innovation & AI, my organization.
+        ? `You draft short LinkedIn outreach messages for the user (a technology professional researching industry experts).
 
 Message format rules:
 - Hard limit: 200 characters total including the greeting. Count the characters before returning. If the draft exceeds 200 characters, shorten it until it fits — do not return anything over 200 characters under any circumstances.
-- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. the company, Digital Innovation) here to give context, followed by the ask.]"
+- Structure: "Hi [First name], [one sentence referencing something specific from their profile context]. [One sentence on what you want and why — you may mention your role, team, or company (e.g. your company or team) here to give context, followed by the ask.]"
 - No formal sign-off block at the end (no "Thanks, [Your Name]" closing)
 - No em dashes (—). Use a comma or just end the sentence.
 - No filler. Every word must earn its place.
 
 Match the tone, length, and structure of these examples exactly:
 ${OUTREACH_EXAMPLES_SHORT}`
-        : `You draft personalised LinkedIn outreach messages for [Your Name], Digital Innovation & AI, my organization.
+        : `You draft personalised LinkedIn outreach messages for the user (a technology professional researching industry experts).
 Always sign off as:
 Thanks,
 [Your Name]
-Digital Innovation & AI
+[Your Role]
 [Your Organization]
 
 Message format rules:
 - 3 to 5 short paragraphs
 - Open with a specific observation about their work, sourced only from their profile context — name something concrete (a project, piece they wrote, talk, role, or experience) that clearly connects to the campaign goal. If nothing connects clearly, open with their overall background.
-- Second paragraph: give brief context on who the user is and what my organization's Digital Innovation team is building or trying to understand.
+- Second paragraph: give brief context on who the sender is and what their team is building or trying to understand.
 - Third paragraph: make a clear, low-friction ask (20-min call, quick chat).
 - Optional closing line before sign-off if it adds warmth.
 - End with the sign-off above.
