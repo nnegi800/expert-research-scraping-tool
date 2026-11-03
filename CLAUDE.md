@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 # Expert Outreach — Claude Code Instructions
 
-This is a LinkedIn expert outreach tool for [Your Name], Digital Innovation & AI, my organization.
+This is a LinkedIn expert research and outreach tool. Messages are written on behalf of the user (name, role and organisation are placeholders to customise).
 
 **When this project is opened:**
 
@@ -83,7 +83,7 @@ When the user approves or gives adjustments:
 - Read `outreach/{slug}/profiles.md` and `outreach/{slug}/briefs.md` for context on each person
 - Read `examples/outreach_examples.txt` and mimic the tone, length, and structure of those messages closely
 - Draft a personalised message for each person using the brief's best hook and the campaign topic/goal from Phase 1
-- Sign off consistently as: [Your Name] / Digital Innovation & AI / [Your Organization]
+- Sign off consistently as: [Your Name] / [Your Role] / [Your Organization]
 
 Write `outreach/{slug}/outreach.md` with one entry per person:
 
