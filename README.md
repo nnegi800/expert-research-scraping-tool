@@ -1,8 +1,8 @@
-# Expert Outreach Tool
+# Expert Research & Outreach Tool
 
-![Expert Outreach Tool](docs/preview.png)
+![Expert Research & Outreach Tool](docs/preview.png)
 
-A browser-based tool for finding LinkedIn experts and drafting personalised outreach, built for the company Digital Innovation & AI. No install, no backend, no build step - open `ui/index.html` and go.
+A browser-based tool for finding LinkedIn experts and drafting personalised outreach, for discovering industry experts, analysing their profiles to learn about their specific domain, and drafting personalised outreach. No install, no backend, no build step - open `ui/index.html` and go.
 
 **[▶ Watch the 2-minute demo](https://www.loom.com/share/e2cb2a8c762d446c8a30d57826498110)**
 
